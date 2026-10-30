@@ -1,0 +1,20 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1793393922510,
+      "tag": "0000_eventproof_schema",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1793393937548,
+      "tag": "0001_evidence_storage_policies",
+      "breakpoints": true
+    }
+  ]
+}
