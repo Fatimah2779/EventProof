@@ -12,7 +12,7 @@ export function DraftEditor({ tasks, onChange }: { tasks: DraftTask[]; onChange:
   const { t } = useI18n();
   const setTask = (i: number, patch: Partial<DraftTask>) => onChange(tasks.map((x, j) => (j === i ? { ...x, ...patch } : x)));
   const setCrit = (i: number, k: number, patch: Partial<DraftCriterion>) =>
-    setTask(i, { criteria: tasks[i].criteria.map((c, j) => (j === k ? { ...c, ...patch } : c)) });
+    setTask(i, { criteria: (tasks[i]?.criteria ?? []).map((c, j) => (j === k ? { ...c, ...patch } : c)) });
 
   return (
     <div className="space-y-5">

@@ -47,7 +47,7 @@ function NewEvent() {
   async function runAnalysis() {
     setBusy(true);
     try {
-      let payload: Parameters<typeof analyze>[0]["data"];
+      let payload: { text?: string; pdfBase64?: string; filename?: string; lang: "en" | "ar" };
       if (mode === "upload") {
         if (!file) throw new Error(t("needRequirements"));
         const k = kindOf(file);
@@ -138,7 +138,7 @@ function NewEvent() {
           className="grid gap-4 rounded-2xl border bg-card p-6 shadow-card md:grid-cols-2"
           onSubmit={(e) => {
             e.preventDefault();
-            if (!form.name.trim()) return toast.error(t("needName"));
+            if (!form.name.trim()) { toast.error(t("needName")); return; }
             setStep(2);
           }}
         >
