@@ -14,7 +14,227 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      criteria: {
+        Row: {
+          created_at: string
+          description: string
+          event_id: string
+          id: string
+          importance: string
+          mandatory: boolean
+          position: number
+          source_ref: string
+          status: string
+          task_id: string
+          title: string
+          user_id: string
+          weight: number
+        }
+        Insert: {
+          created_at?: string
+          description?: string
+          event_id: string
+          id?: string
+          importance?: string
+          mandatory?: boolean
+          position?: number
+          source_ref?: string
+          status?: string
+          task_id: string
+          title: string
+          user_id?: string
+          weight?: number
+        }
+        Update: {
+          created_at?: string
+          description?: string
+          event_id?: string
+          id?: string
+          importance?: string
+          mandatory?: boolean
+          position?: number
+          source_ref?: string
+          status?: string
+          task_id?: string
+          title?: string
+          user_id?: string
+          weight?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "criteria_event_id_fkey"
+            columns: ["event_id"]
+            isOneToOne: false
+            referencedRelation: "events"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "criteria_task_id_fkey"
+            columns: ["task_id"]
+            isOneToOne: false
+            referencedRelation: "tasks"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      events: {
+        Row: {
+          created_at: string
+          description: string
+          event_date: string | null
+          event_type: string
+          id: string
+          location: string
+          name: string
+          organizer: string
+          requirements_text: string
+          source_filename: string | null
+          status: string
+          user_id: string
+          visitors: number | null
+        }
+        Insert: {
+          created_at?: string
+          description?: string
+          event_date?: string | null
+          event_type?: string
+          id?: string
+          location?: string
+          name: string
+          organizer?: string
+          requirements_text?: string
+          source_filename?: string | null
+          status?: string
+          user_id?: string
+          visitors?: number | null
+        }
+        Update: {
+          created_at?: string
+          description?: string
+          event_date?: string | null
+          event_type?: string
+          id?: string
+          location?: string
+          name?: string
+          organizer?: string
+          requirements_text?: string
+          source_filename?: string | null
+          status?: string
+          user_id?: string
+          visitors?: number | null
+        }
+        Relationships: []
+      }
+      evidence: {
+        Row: {
+          ai_confidence: number | null
+          ai_explanation: string | null
+          ai_status: string | null
+          created_at: string
+          criterion_id: string
+          event_id: string
+          extracted_text: string | null
+          file_name: string
+          file_path: string
+          final_status: string
+          id: string
+          mime_type: string
+          overridden_at: string | null
+          override_reason: string | null
+          user_id: string
+        }
+        Insert: {
+          ai_confidence?: number | null
+          ai_explanation?: string | null
+          ai_status?: string | null
+          created_at?: string
+          criterion_id: string
+          event_id: string
+          extracted_text?: string | null
+          file_name: string
+          file_path: string
+          final_status?: string
+          id?: string
+          mime_type?: string
+          overridden_at?: string | null
+          override_reason?: string | null
+          user_id?: string
+        }
+        Update: {
+          ai_confidence?: number | null
+          ai_explanation?: string | null
+          ai_status?: string | null
+          created_at?: string
+          criterion_id?: string
+          event_id?: string
+          extracted_text?: string | null
+          file_name?: string
+          file_path?: string
+          final_status?: string
+          id?: string
+          mime_type?: string
+          overridden_at?: string | null
+          override_reason?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "evidence_criterion_id_fkey"
+            columns: ["criterion_id"]
+            isOneToOne: false
+            referencedRelation: "criteria"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "evidence_event_id_fkey"
+            columns: ["event_id"]
+            isOneToOne: false
+            referencedRelation: "events"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      tasks: {
+        Row: {
+          created_at: string
+          description: string
+          event_id: string
+          id: string
+          position: number
+          source_ref: string
+          title: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string
+          event_id: string
+          id?: string
+          position?: number
+          source_ref?: string
+          title: string
+          user_id?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string
+          event_id?: string
+          id?: string
+          position?: number
+          source_ref?: string
+          title?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "tasks_event_id_fkey"
+            columns: ["event_id"]
+            isOneToOne: false
+            referencedRelation: "events"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
