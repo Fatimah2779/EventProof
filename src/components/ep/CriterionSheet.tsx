@@ -82,7 +82,7 @@ export function CriterionSheet({ criterion, evidence, eventId, onClose }: { crit
   }
 
   async function saveOverride(ev: EvidenceRow) {
-    if (!ovReason.trim()) return toast.error(t("reasonRequired"));
+    if (!ovReason.trim()) { toast.error(t("reasonRequired")); return; }
     await supabase.from("evidence").update({ final_status: ovStatus, override_reason: ovReason, overridden_at: new Date().toISOString() }).eq("id", ev.id);
     if (criterion && evidence[0]?.id === ev.id) await supabase.from("criteria").update({ status: ovStatus }).eq("id", criterion.id);
     setOverrideFor(null);
